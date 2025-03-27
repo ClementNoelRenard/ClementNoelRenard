@@ -30,11 +30,15 @@
         }
             /* Centrer l'image avec des bords arrondis */
         .profile-img {
-            max-width: auto;  /* Pour que l'image ne dépasse pas la largeur de son conteneur */
-             height: 15;
-             border-radius: 15px;  /* Bords arrondis */
-             border: 5px solid #333; /* couleur du bord */
-        }
+            width: 200px; /* ajuster la taille selon tes besoins */
+            height: 200px; /* ajuster la taille selon tes besoins */
+            border-radius: 15px; /* arrondi des coins */
+            border: 5px solid #333; /* couleur du bord */
+            object-fit: cover; /* pour que l'image remplisse bien le carré */
+            margin: 20px auto; /* centrer horizontalement avec une marge verticale */
+            display: block; /* nécessaire pour que le margin auto fonctionne */
+}
+
         ul {
             list-style: none;
             padding: 0;
