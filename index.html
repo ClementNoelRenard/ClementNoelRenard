@@ -76,11 +76,54 @@
             text-align: center;
             margin: 0 auto;
             display: block;
+            /* Mettre la vidéo en arrière-plan */
+        }  
+        /* Mettre la vidéo en arrière-plan */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* Assure que la vidéo couvre toute la surface */
+            z-index: -1;  /* La vidéo sera en dessous de tout le contenu */
+        }
+
+        /* Contenu principal */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;  /* Pour que le texte soit visible sur le fond de vidéo */
+        }
+
+        /* Style du header et du container */
+        header {
+            background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent pour lisibilité */
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Fond léger pour rendre le texte lisible */
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
 }
     </style>
 </head>
 <body>
     <header>Bienvenue sur mon site !  :D </header>
+
+    <video autoplay muted loop id="background-video">
+        <source src="a.mp4" type="video/mp4">
+        Désolé, votre navigateur ne supporte pas les vidéos.
+    </video>
+
+
     <div class="container">
         <h2>Bonjour !</h2>
         <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII.</p>
