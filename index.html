@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+        }
+            /* Centrer l'image avec des bords arrondis */
+        .profile-img {
+            max-width: 20%;  /* Pour que l'image ne dépasse pas la largeur de son conteneur */
+             height: 100;
+             border-radius: 15px;  /* Bords arrondis */
+             border: 5px solid #333; /* couleur du bord */
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #ddd;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .timeline {
+            margin-top: 20px;
+            padding: 20px;
+            border-left: 3px solid #333;
+        }
+        .timeline div {
+            margin: 10px 0;
+            padding: 10px;
+            background: #eee;
+            border-radius: 5px;
+        }
+        .sublist {
+            margin-left: 20px;
+            list-style-type: circle;
+        }
+    /* Personnalisation de la légende */
+        .figcaption {
+            font-style: italic; /* Italique */
+            font-size: 14px; /* Taille de la légende */
+            color: #666; /* Couleur de la légende */
+            margin-top: 10px; /* Espace entre l'image et la légende */
+        }
+        /* Centrer l'élément figure */
+        .centered {
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+}
+    </style>
+</head>
+<body>
+    <header>Bienvenue sur mon site !</header>
+    <div class="container">
+        <h2>Bonjour !</h2>
+        <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII.</p>
+            <p>Mon objectif actuellement, est d'obtenir mon BUT puis d'intégrer une formation pour approfondir mes compétences en automatisme-que et/ou me diriger vers les domaines des equipements embarquées</p>
+        <figure class="centered">
+            <img src="MOI.jpg" alt="Photo de Clément Noël" class="profile-img">
+            <figcaption style="font-style: italic;">Clément Noël - Étudiant en GEII</figcaption>
+        </figure>
+            
+    </div>
+    <div class="container">
+        <h2>Mes différents contacts</h2>
+        <ul>
+            <li>Email: exemple@mail.com</li>
+            <li>LinkedIn: <a href="#">linkedin.com/in/exemple</a></li>
+        </ul>
+        <h2>Liens et redirections intéressantes</h2>
+        <ul>
+            <li><a href="#">Lien 1</a></li>
+            <li><a href="#">Lien 2</a></li>
+            <li><a href="#">Lien 3</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>Timeline de mes projets</h2>
+        <div class="timeline">
+            <div>
+                <strong>2017 - 2020 :</strong> BAC PRO
+                <ul class="sublist">
+                    <li>Projet Alpha</li>
+                    <li>Expérience technique</li>
+                    <li>Stage en entreprise</li>
+                </ul>
+            </div>
+            <div>
+                <strong>2020 - 2023 :</strong> BTS GEII
+                <ul class="sublist">
+                    <li>Programmation embarquée</li>
+                    <li>Conception de circuits</li>
+                    <li>Automatisation industrielle</li>
+                </ul>
+            </div>
+            <div>
+                <strong>2023 - Présent :</strong> Études en AII
+                <ul class="sublist">
+                    <li>Intelligence artificielle</li>
+                    <li>Systèmes embarqués</li>
+                    <li>Projets avancés</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
