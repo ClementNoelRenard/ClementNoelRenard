@@ -64,17 +64,61 @@
             padding: 10px;
             border-radius: 5px;
         }
+
+        /* Conteneur principal de la timeline */
         .timeline {
             margin-top: 20px;
-            padding: 20px;
+            padding-left: 60px; /* Décalage pour intégrer la date */
             border-left: 3px solid #333;
+            position: relative;
         }
+
+        /* Style des événements */
         .timeline div {
             margin: 10px 0;
             padding: 10px;
             background: #eee;
             border-radius: 5px;
+            position: relative;
         }
+
+        /* Ajout d'un point sur la timeline */
+        .timeline div::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            left: -47px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Trait horizontal reliant le point à l'événement */
+        .timeline div::after {
+            content: "";
+            width: 40px;
+            height: 3px;
+            background: #333;
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Style des dates */
+        .timeline-date {
+            position: absolute;
+            left: -100px; /* Place la date à gauche du point */
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+        }
+
+
         .sublist {
             margin-left: 20px;
             list-style-type: circle;
@@ -210,6 +254,7 @@
         <div class="timeline">
 
             <div>
+                        <span class="timeline-date">2018</span>
                 <strong>2018 :</strong> Stage YessElectrique, durée de 10 semaines
                 <ul class="sublist">
                     <li>Vente de composants et proposition de reference</li>
@@ -248,6 +293,6 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>   
 </body>
 </html>
