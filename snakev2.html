@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Snake Game</title>
+  <style>
+    body {
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    canvas {
+      border: 1px solid #000;
+      background-color: rgb(255, 255, 200); /* Couleur de fond similaire à WHITE */
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game" width="300" height="300"></canvas>
+  <script>
+    // Configuration du jeu
+    const WIDTH = 300;
+    const HEIGHT = 300;
+    const GRID_SIZE = 15;
+    const COLS = WIDTH / GRID_SIZE;  // 20 colonnes
+    const ROWS = HEIGHT / GRID_SIZE; // 20 lignes
+
+    const WHITE = "rgb(255,255,200)";
+    const GREEN = "rgb(0,255,0)";
+    const RED = "rgb(255,0,0)";
+
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+
+    // Fonction pour placer de la nourriture à une position aléatoire vide
+    function placeFood(snake) {
+      let x, y, conflit;
+      do {
+        x = Math.floor(Math.random() * COLS);
+        y = Math.floor(Math.random() * ROWS);
+        conflit = snake.some(segment => segment.x === x && segment.y === y);
+      } while (conflit);
+      return { x, y };
+    }
+
+    // Initialisation du serpent, de la direction, de la nourriture et du score
+    let snake = [{ x: Math.floor(COLS / 2), y: Math.floor(ROWS / 2) }];
+    let direction = { x: 1, y: 0 }; // Direction initiale vers la droite
+    let food = placeFood(snake);
+    let score = 0;
+    let gameOver = false;
+
+    // Gestion du contrôle via les flèches du clavier
+    document.addEventListener("keydown", (e) => {
+      switch (e.key) {
+        case "ArrowLeft":
+          if (direction.x !== 1) direction = { x: -1, y: 0 };
+          break;
+        case "ArrowRight":
+          if (direction.x !== -1) direction = { x: 1, y: 0 };
+          break;
+        case "ArrowUp":
+          if (direction.y !== 1) direction = { x: 0, y: -1 };
+          break;
+        case "ArrowDown":
+          if (direction.y !== -1) direction = { x: 0, y: 1 };
+          break;
+      }
+    });
+
+    // Fonction principale de mise à jour du jeu
+    function update() {
+      if (gameOver) return;
+
+      // Calcul de la nouvelle tête
+      const head = snake[0];
+      const newHead = { x: head.x + direction.x, y: head.y + direction.y };
+
+      // Vérification de la collision avec les bords
+      if (newHead.x < 0 || newHead.x >= COLS || newHead.y < 0 || newHead.y >= ROWS) {
+        gameOver = true;
+        drawGame();
+        gameOverScreen();
+        return;
+      }
+
+      // Vérification de la consommation de nourriture
+      const ateFood = newHead.x === food.x && newHead.y === food.y;
+      if (ateFood) {
+        score++;
+        food = placeFood(snake);
+      } else {
+        snake.pop(); // Supprime le dernier segment si aucune nourriture n'est mangée
+      }
+
+      // Ajout de la nouvelle tête
+      snake.unshift(newHead);
+
+      // Vérification d'une collision avec soi-même
+      for (let i = 1; i < snake.length; i++) {
+        if (newHead.x === snake[i].x && newHead.y === snake[i].y) {
+          gameOver = true;
+          break;
+        }
+      }
+
+      drawGame();
+
+      if (gameOver) {
+        gameOverScreen();
+      }
+    }
+
+    // Fonction pour dessiner le jeu sur le canvas
+    function drawGame() {
+      // Fond
+      ctx.fillStyle = WHITE;
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      // Dessin du serpent
+      ctx.fillStyle = GREEN;
+      snake.forEach(segment => {
+        ctx.fillRect(segment.x * GRID_SIZE, segment.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+      });
+
+      // Dessin de la nourriture
+      ctx.fillStyle = RED;
+      ctx.fillRect(food.x * GRID_SIZE, food.y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+
+      // Affichage du score
+      ctx.fillStyle = "black";
+      ctx.font = "20px sans-serif";
+      ctx.fillText("Score: " + score, 10, 20);
+    }
+
+    // Fonction d'affichage de l'écran de fin
+    function gameOverScreen() {
+      // Affichage du message "Game Over!"
+      ctx.fillStyle = RED;
+      ctx.font = "40px sans-serif";
+      const text = "Game Over!";
+      const textWidth = ctx.measureText(text).width;
+      ctx.fillText(text, (WIDTH - textWidth) / 2, HEIGHT / 2);
+      clearInterval(gameInterval);  // Arrête la boucle de jeu
+    }
+
+    // Boucle de jeu : environ 10 mises à jour par seconde
+    const gameInterval = setInterval(update, 100);
+  </script>
+</body>
+</html>
