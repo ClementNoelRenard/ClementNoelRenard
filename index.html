@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="Site de Clément Noël - Étudiant GEII" content="Un site qui fera le répertoire de tout mon travail universitaire et de mes travaux personnels"> -->
+    <!-- <meta name="Site de Clément Noël - Etudiant GEII" content="Un site qui fera le repertoire de ton mon travail Universitaire et de mes travaux personnels"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
@@ -33,74 +33,248 @@
             margin-top: 20px;
             text-align: left;
         }
+            /* Centrer l'image avec des bords arrondis */
+        .profile-img {
+            width: 200px; /* ajuster la taille selon tes besoins */
+            height: 200px; /* ajuster la taille selon tes besoins */
+            border-radius: 150px; /* arrondi des coins */
+            border: 5px solid #333; /* couleur du bord */
+            object-fit: cover; /* pour que l'image remplisse bien le carré */
+            margin: 20px auto; /* centrer horizontalement avec une marge verticale */
+            display: block; /* nécessaire pour que le margin auto fonctionne */
+        }
+        
+        .img {
+            width: 150px; /* ajuster la taille selon tes besoins */
+            height: 150px; /* ajuster la taille selon tes besoins */
+            border-radius: 10px; /* arrondi des coins */
+            border: 5px solid #000000; /* couleur du bord */
+            object-fit: cover; /* pour que l'image remplisse bien le carré */
+            margin: 10px auto; /* centrer horizontalement avec une marge verticale */
+            display: block; /* nécessaire pour que le margin auto fonctionne */
+        }        
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #ddd;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Conteneur principal de la timeline */
+        .timeline {
+            margin-top: 20px;
+            padding-left: 60px; /* Décalage pour intégrer la date */
+            border-left: 3px solid #333;
+            position: relative;
+        }
+
+        /* Style des événements */
+        .timeline div {
+            margin: 10px 0;
+            padding: 10px;
+            background: #eee;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        /* Ajout d'un point sur la timeline */
+        .timeline div::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            left: -47px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Trait horizontal reliant le point à l'événement */
+        .timeline div::after {
+            content: "";
+            width: 40px;
+            height: 3px;
+            background: #333;
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Style des dates */
+        .timeline-date {
+            position: absolute;
+            left: -145px; /* Place la date à gauche du point */
+            top: 50%;
+            transform: translateY(-50%) rotate(270deg); 
+            font-weight: bold;
+            font-size: 35px;
+            color: #333;
+        }
+
+
+        .sublist {
+            margin-left: 20px;
+            list-style-type: circle;
+        }
+    /* Personnalisation de la légende */
+        .figcaption {
+            font-style: italic; /* Italique */
+            font-size: 14px; /* Taille de la légende */
+            color: #666; /* Couleur de la légende */
+            margin-top: 10px; /* Espace entre l'image et la légende */
+        }
+        /* Centrer l'élément figure */
+        .centered {
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+            /* Mettre la vidéo en arrière-plan */
+        }  
+        /* Mettre la vidéo en arrière-plan */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* Assure que la vidéo couvre toute la surface */
+            z-index: -1;  /* La vidéo sera en dessous de tout le contenu */
+        }
+
+        /* Contenu principal */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;  /* Pour que le texte soit visible sur le fond de vidéo */
+        }
+
+        /* Style du header et du container */
+        header {
+            background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent pour lisibilité */
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Fond léger pour rendre le texte lisible */
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+}
     </style>
 </head>
-<body>
-    <header>Site en construction. Si vous remarquez des problèmes, n'hésitez pas à m'envoyer un mail à : clementnoel.geii@gmail.com ;) Merci.</header>
+
+<!-- Bootstrap JS (nécessaire pour le fonctionnement des modales) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfModalLabel">Mon CV</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="cv.pdf" width="100%" height="1000px" style="border:none;"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</body>
+
+
+
+    <header>Site en construction, si vous remarquez des problemes, n'esitez pas à m'envoyer un mail a : clementnoel.geii@gmail.com   ;) merci </header>
 
     <video autoplay muted loop id="background-video">
         <source src="a.mp4" type="video/mp4">
         Désolé, votre navigateur ne supporte pas les vidéos.
     </video>
 
+
     <div class="container">
         <h2>Bonjour !</h2>
         <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII.</p>
-        <p>Mon objectif actuellement est d'obtenir mon BUT, puis d'intégrer une formation pour approfondir mes compétences en automatique et/ou me diriger vers les domaines des équipements embarqués.</p>
+            <p>Mon objectif actuellement, est d'obtenir mon BUT puis d'intégrer une formation pour approfondir mes compétences en automatisme-que et/ou me diriger vers les domaines des équipements embarqué</p>
         <figure class="centered">
             <img src="MOI.jpg" alt="Photo de Clément Noël" class="profile-img">
             <figcaption style="font-style: italic;">Clément Noël - Étudiant en GEII</figcaption>
         </figure>
+            
     </div>
 
-    <div class="container">
+
+        <div class = "container" >
         <h2>Mon CV !</h2>
         <ul>
             <li><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal">
                 Voir mon CV
             </button></li>
-        </ul>
+                    </ul>
     </div>
+
 
     <div class="container">
         <h2>Mes différents contacts</h2>
         <ul>
             <li>Email: clementnoel.geii@gmail.com</li>
-            <li>LinkedIn: <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a">Lien LinkedIn</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a">Lien Linkdelin/</a></li>
         </ul>
-    </div>
+
+      </div>
+
 
     <div class="container">
         <h2>Pause café ☕</h2>
         <ul>
-            <li><a href="https://en.wikipedia.org/wiki/Voyager_1">Lecture Wiki sur Voyager 1</a></li>
-            <li><a href="javascript:void(0);" onclick="window.open('snakev2.html', 'popup', 'width=600,height=600,scrollbars=yes,resizable=yes')">Mon jeu Snake en HTML...</a></li>
-            <li><a href="javascript:void(0);" onclick="window.open('snake_v3_tactile.html', 'popup', 'width=600,height=600,scrollbars=yes,resizable=yes')">... Et sa version compatible tactile ! :D </a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Voyager_1">lecture Wiki sur Voyageur 1</a></li>
+            <li><a href="javascript:void(0);" onclick="window.open('snakev2.html', 'popup', 'width=600,height=600,scrollbars=yes,resizable=yes')">Mon jeux snake en HTML....</a></li>
+            <li><a href="javascript:void(0);" onclick="window.open('snake_v3_tactile.html', 'popup', 'width=600,height=600,scrollbars=yes,resizable=yes')">....Et sa version compatible tactile ! :D </a></li>
+
         </ul>
     </div>
 
+    
+    </div>
     <div class="container">
         <h2>Timeline</h2>
         <div class="timeline">
-            <div>
-                <span class="timeline-date">2018</span>
-                <strong>2018 :</strong> Stage YessÉlectrique, durée de 10 semaines
-                <ul class="sublist">
-                    <li>Vente de composants et proposition de références</li>
-                    <li>Conseil clients</li>
-                </ul>
-                <figure class="centered">
-                    <img src="Yess.JPG" class="img">
-                </figure>
-            </div>
 
             <div>
-                <strong>2019 :</strong> Obtention du Bac pro MELEC
+                        <span class="timeline-date">2018</span>
+                <strong>2018 :</strong> Stage YessElectrique, durée de 10 semaines
                 <ul class="sublist">
-                    <li>Électricité</li>
+                    <li>Vente de composants et proposition de reference</li>
+                    <li>Conseil clients</li>
+                </ul>
+            <figure class="centered">
+                <img src="Yess.JPG" class="img">
+            </figure>
+            </div>
+
+
+            <div>
+                <strong>2019 :</strong> Obtention du Bac pro melec
+                <ul class="sublist">
+                    <li>Electricité</li>
                     <li>Domotique</li>
                 </ul>
-                <img src="CharlePeguy.JPG" class="img">
+                <!-- <figure class="centered"> -->
+                    <img src="CharlePeguy.JPG" class="img">
+                <!-- </figure> -->
             </div>
             <div>
                 <strong>2020 - 2023 :</strong> BTS GEII
@@ -119,24 +293,7 @@
                 </ul>
             </div>
         </div>
-    </div>
-
-    <!-- Modal Bootstrap -->
-    <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="pdfModalLabel">Mon CV</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                </div>
-                <div class="modal-body">
-                    <iframe src="cv.pdf" width="100%" height="1000px" style="border:none;"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </div> 
+</div>
 </body>
 </html>
