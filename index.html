@@ -1,299 +1,318 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <!-- <meta name="Site de Clément Noël - Etudiant GEII" content="Un site qui fera le repertoire de ton mon travail Universitaire et de mes travaux personnels"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+      color: white;
+      overflow-x: hidden;
+    }
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    header, footer {
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+    }
 
-    <title>Mon Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #46353565;
-            text-align: center;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: left;
-        }
-            /* Centrer l'image avec des bords arrondis */
-        .profile-img {
-            width: 200px; /* ajuster la taille selon tes besoins */
-            height: 200px; /* ajuster la taille selon tes besoins */
-            border-radius: 150px; /* arrondi des coins */
-            border: 5px solid #333; /* couleur du bord */
-            object-fit: cover; /* pour que l'image remplisse bien le carré */
-            margin: 20px auto; /* centrer horizontalement avec une marge verticale */
-            display: block; /* nécessaire pour que le margin auto fonctionne */
-        }
-        
-        .img {
-            width: 150px; /* ajuster la taille selon tes besoins */
-            height: 150px; /* ajuster la taille selon tes besoins */
-            border-radius: 10px; /* arrondi des coins */
-            border: 5px solid #000000; /* couleur du bord */
-            object-fit: cover; /* pour que l'image remplisse bien le carré */
-            margin: 10px auto; /* centrer horizontalement avec une marge verticale */
-            display: block; /* nécessaire pour que le margin auto fonctionne */
-        }        
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            background: #ddd;
-            margin: 5px;
-            padding: 10px;
-            border-radius: 5px;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
 
-        /* Conteneur principal de la timeline */
-        .timeline {
-            margin-top: 20px;
-            padding-left: 60px; /* Décalage pour intégrer la date */
-            border-left: 3px solid #333;
-            position: relative;
-        }
+    nav a:hover {
+      color: #00f0ff;
+    }
 
-        /* Style des événements */
-        .timeline div {
-            margin: 10px 0;
-            padding: 10px;
-            background: #eee;
-            border-radius: 5px;
-            position: relative;
-        }
+    .intro-section {
+      padding: 4rem 2rem 2rem;
+      display: flex;
+      justify-content: center;
+    }
 
-        /* Ajout d'un point sur la timeline */
-        .timeline div::before {
-            content: "";
-            width: 12px;
-            height: 12px;
-            background: #333;
-            border-radius: 50%;
-            position: absolute;
-            left: -47px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+    .intro {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #0a2740;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 1100px;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.3);
+    }
 
-        /* Trait horizontal reliant le point à l'événement */
-        .timeline div::after {
-            content: "";
-            width: 40px;
-            height: 3px;
-            background: #333;
-            position: absolute;
-            left: -40px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
+    .intro-text {
+      max-width: 600px;
+    }
 
-        /* Style des dates */
-        .timeline-date {
-            position: absolute;
-            left: -145px; /* Place la date à gauche du point */
-            top: 50%;
-            transform: translateY(-50%) rotate(270deg); 
-            font-weight: bold;
-            font-size: 35px;
-            color: #333;
-        }
+    .intro-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
 
+    .intro-text p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
 
-        .sublist {
-            margin-left: 20px;
-            list-style-type: circle;
-        }
-    /* Personnalisation de la légende */
-        .figcaption {
-            font-style: italic; /* Italique */
-            font-size: 14px; /* Taille de la légende */
-            color: #666; /* Couleur de la légende */
-            margin-top: 10px; /* Espace entre l'image et la légende */
-        }
-        /* Centrer l'élément figure */
-        .centered {
-            text-align: center;
-            margin: 0 auto;
-            display: block;
-            /* Mettre la vidéo en arrière-plan */
-        }  
-        /* Mettre la vidéo en arrière-plan */
-        #background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;  /* Assure que la vidéo couvre toute la surface */
-            z-index: -1;  /* La vidéo sera en dessous de tout le contenu */
-        }
+    .intro img {
+      width: 250px;
+      border-radius: 20px;
+      border: 3px solid #ffffff; /* Ajoute une bordure noire de 2 pixels */
+    }
 
-        /* Contenu principal */
-        .content {
-            position: relative;
-            z-index: 1;
-            color: white;  /* Pour que le texte soit visible sur le fond de vidéo */
-        }
+    .links {
+      margin-top: 1.5rem;
+    }
 
-        /* Style du header et du container */
-        header {
-            background-color: rgba(0, 0, 0, 0.6); /* Fond semi-transparent pour lisibilité */
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-        }
+    .links a {
+      display: inline-block;
+      margin-right: 1rem;
+      color: #00f0ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-        .container {
-            width: 80%;
-            margin: auto;
-            background-color: rgba(255, 255, 255, 0.8); /* Fond léger pour rendre le texte lisible */
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-top: 20px;
-}
-    </style>
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .timeline-section {
+  margin-top: 4rem;
+  position: relative;
+  min-height: 1200px; /* ou ajustable dynamiquement selon le contenu */
+    }
+
+    .timeline {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 100%;
+      background: linear-gradient(to bottom, #00f0ff, #004466);
+      border-radius: 50px;
+   }
+
+    .rocket {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 100px;
+      background: url('') no-repeat center;
+      background-size: contain;
+      z-index: 2;
+    }
+
+    .step {
+      position: absolute;
+      width: 320px;
+      padding: 16px;
+      background: rgba(0, 102, 204, 0.2);
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px #00f0ff66;
+      backdrop-filter: blur(4px);
+      font-weight: 500;
+    }
+
+    .step h3 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+
+    .step button {
+      background-color: #00f0ff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .step button:hover {
+      background-color: #00c0cc;
+    }
+
+    .step.left {
+      left: calc(50% - 380px);
+    }
+
+    .step.right {
+      left: calc(50% + 60px);
+    }
+
+    .connector {
+      position: absolute;
+      width: 60px;
+      height: 2px;
+      background: #00f0ff;
+      top: 24px;
+    }
+
+    .step.left .connector {
+      right: -60px;
+    }
+
+    .step.right .connector {
+      left: -60px;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+      background: #000;
+      border-radius: 16px;
+      border: 2px solid #00f0ff;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .popup iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+    }
+
+    @media screen and (max-width: 768px) {
+      .step {
+        width: 80%;
+        left: 10% !important;
+      }
+      .connector {
+        display: none;
+      }
+      .intro {
+        flex-direction: column;
+        text-align: center;
+      }
+      .intro img {
+        margin-top: 2rem;
+        width: 200px;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+<body>
 
-<!-- Bootstrap JS (nécessaire pour le fonctionnement des modales) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Modal Bootstrap -->
-<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="pdfModalLabel">Mon CV</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-        </div>
-        <div class="modal-body">
-          <iframe src="cv.pdf" width="100%" height="1000px" style="border:none;"></iframe>
-        </div>
+<header>
+  <nav>
+    <div><strong>Mon Portfolio</strong></div>
+    <div>
+      <a href="#">Accueil</a>
+      <a href="#stepsContainer">Projets</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="intro-section">
+  <div class="intro">
+    <div class="intro-text">
+      <h1>Mon portfolio ^^</h1>
+      <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII Aii. Avec mes diplômes précédents (BTS CRSA et BAC PRO MELEC), j'ai développé une polyvalence précieuse dans mon domaine.</p>
+      <p>Mon objectif est d'intégrer une école pour approfondir mes compétences en automatisme et énergie. À terme, je souhaite devenir un automaticien confirmé en entreprise, avec la possibilité d'enseigner à l'avenir.</p>
+      <div class="links">
+        <a href="cv.pdf" target="_blank">Mon CV</a>
+        <a href="https://www.linkedin.com/in/monprofil" target="_blank">LinkedIn</a>
+        <a href="https://github.com/monprofil" target="_blank">GitHub</a>
       </div>
     </div>
+    <img src="MOI.jpg" alt="Photo profil">
   </div>
-  
+</section>
 
-</body>
+<section class="timeline-section">
+  <div class="rocket"></div>
+  <div class="timeline"></div>
+  <div id="stepsContainer"></div>
+</section>
 
-
-
-    <header>Site en construction, si vous remarquez des problemes, n'esitez pas à m'envoyer un mail a : clementnoel.geii@gmail.com   ;) merci </header>
-
-    <video autoplay muted loop id="background-video">
-        <source src="a.mp4" type="video/mp4">
-        Désolé, votre navigateur ne supporte pas les vidéos.
-    </video>
-
-
-    <div class="container">
-        <h2>Bonjour !</h2>
-        <p>Bienvenue sur mon portfolio ! Je suis actuellement en formation à l'IUT de Bordeaux en BUT GEII AII.</p>
-            <p>Mon objectif actuellement, est d'obtenir mon BUT puis d'intégrer une formation pour approfondir mes compétences en automatisme-que et/ou me diriger vers les domaines des équipements embarqué</p>
-        <figure class="centered">
-            <img src="MOI.jpg" alt="Photo de Clément Noël" class="profile-img">
-            <figcaption style="font-style: italic;">Clément Noël - Étudiant en GEII</figcaption>
-        </figure>
-            
-    </div>
-
-
-        <div class = "container" >
-        <h2>Mon CV !</h2>
-        <ul>
-            <li><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pdfModal">
-                Voir mon CV
-            </button></li>
-                    </ul>
-    </div>
-
-
-    <div class="container">
-        <h2>Mes différents contacts</h2>
-        <ul>
-            <li>Email: clementnoel.geii@gmail.com</li>
-            <li>LinkedIn: <a href="https://www.linkedin.com/in/cl%C3%A9ment-no%C3%ABl-35563720a">Lien Linkdelin/</a></li>
-        </ul>
-
-      </div>
-
-
-    <div class="container">
-        <h2>Pause café ☕</h2>
-        <ul>
-            <li><a href="https://en.wikipedia.org/wiki/Voyager_1">lecture Wiki sur Voyageur 1</a></li>
-            <li><a href="javascript:void(0);" onclick="window.open('snakev2.html', 'popup', 'width=600,height=600,scrollbars=yes,resizable=yes')">Mon jeux snake en HTML....</a></li>
-            <li><a href="javascript:void(0);" onclick="window.open('snake_v3_tactile.html', 'popup', 'width=600,height=600,scrollbars=yes,resizable=yes')">....Et sa version compatible tactile ! :D </a></li>
-
-        </ul>
-    </div>
-
-    
-    </div>
-    <div class="container">
-        <h2>Timeline</h2>
-        <div class="timeline">
-
-            <div>
-                        <span class="timeline-date">2018</span>
-                <strong>2018 :</strong> Stage YessElectrique, durée de 10 semaines
-                <ul class="sublist">
-                    <li>Vente de composants et proposition de reference</li>
-                    <li>Conseil clients</li>
-                </ul>
-            <figure class="centered">
-                <img src="Yess.JPG" class="img">
-            </figure>
-            </div>
-
-
-            <div>
-                <strong>2019 :</strong> Obtention du Bac pro melec
-                <ul class="sublist">
-                    <li>Electricité</li>
-                    <li>Domotique</li>
-                </ul>
-                <!-- <figure class="centered"> -->
-                    <img src="CharlePeguy.JPG" class="img">
-                <!-- </figure> -->
-            </div>
-            <div>
-                <strong>2020 - 2023 :</strong> BTS GEII
-                <ul class="sublist">
-                    <li>Programmation embarquée</li>
-                    <li>Conception de circuits</li>
-                    <li>Automatisation industrielle</li>
-                </ul>
-            </div>
-            <div>
-                <strong>2023 - Présent :</strong> Études en AII
-                <ul class="sublist">
-                    <li>Intelligence artificielle</li>
-                    <li>Systèmes embarqués</li>
-                    <li>Projets avancés</li>
-                </ul>
-            </div>
-        </div>
-    </div> 
+<!-- Popup PDF -->
+<div id="pdfPopup" class="popup">
+  <span class="close-btn" onclick="closePDF()">✖</span>
+  <iframe id="pdfFrame" src=""></iframe>
 </div>
+
+<footer id="contact">
+  <p>© 2025 Mon Portfolio - Tous droits réservés. | <a href="mailto:email@example.com" style="color:#00f0ff;">email@example.com</a></p>
+</footer>
+
+<script>
+  const projects = [
+    { title: "Projet le plus récent", pdf: "pdfs/projet1.pdf" },
+    { title: "Projet précédent", pdf: "pdfs/projet2.pdf" },
+    { title: "Projet plus ancien", pdf: "pdfs/projet3.pdf" }
+  ];
+
+  const stepsContainer = document.getElementById('stepsContainer');
+  const verticalSpacing = 300;
+
+  projects.forEach((project, index) => {
+    const step = document.createElement('div');
+    step.classList.add('step');
+    step.classList.add(index % 2 === 0 ? 'left' : 'right');
+    step.style.top = (index * verticalSpacing + 200) + 'px';
+
+    const connector = document.createElement('div');
+    connector.classList.add('connector');
+    step.appendChild(connector);
+
+    const title = document.createElement('h3');
+    title.textContent = project.title;
+    step.appendChild(title);
+
+    const button = document.createElement('button');
+    button.textContent = 'Voir PDF';
+    button.onclick = () => openPDF(project.pdf);
+    step.appendChild(button);
+
+    stepsContainer.appendChild(step);
+  });
+
+  function openPDF(pdfUrl) {
+    document.getElementById('pdfFrame').src = pdfUrl;
+    document.getElementById('pdfPopup').style.display = 'block';
+  }
+
+  function closePDF() {
+    document.getElementById('pdfPopup').style.display = 'none';
+    document.getElementById('pdfFrame').src = '';
+  }
+</script>
+
 </body>
 </html>
