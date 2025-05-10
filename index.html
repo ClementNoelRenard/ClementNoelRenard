@@ -8,13 +8,24 @@
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+      background: url('chemin/vers/image.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       overflow-x: hidden;
     }
 
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      z-index: -1;
+      object-fit: cover;
+    }
+
     header, footer {
-      width: 100%;
+      width: 95%;
       padding: 1rem 2rem;
       background-color: rgba(0, 0, 0, 0.8);
       color: white;
@@ -72,7 +83,7 @@
     .intro img {
       width: 250px;
       border-radius: 20px;
-      border: 3px solid #ffffff; /* Ajoute une bordure noire de 2 pixels */
+      border: 3px solid #ffffff;
     }
 
     .links {
@@ -85,6 +96,14 @@
       color: #00f0ff;
       text-decoration: none;
       font-weight: 500;
+      background-color: #00f0ff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .links a:hover {
@@ -92,9 +111,9 @@
     }
 
     .timeline-section {
-  margin-top: 4rem;
-  position: relative;
-  min-height: 1200px; /* ou ajustable dynamiquement selon le contenu */
+      margin-top: 4rem;
+      position: relative;
+      min-height: 3600px; /* Ajuste selon le nombre de projets */
     }
 
     .timeline {
@@ -102,11 +121,11 @@
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 8px;
+      width: 15px;
       height: 100%;
       background: linear-gradient(to bottom, #00f0ff, #004466);
       border-radius: 50px;
-   }
+    }
 
     .rocket {
       position: absolute;
@@ -228,13 +247,18 @@
 </head>
 <body>
 
+<!-- 🎥 Vidéo en arrière-plan -->
+<video autoplay muted loop id="bgVideo">
+  <source src="a.mp4" type="video/mp4">
+  Votre navigateur ne supporte pas la vidéo HTML5.
+</video>
+
 <header>
   <nav>
     <div><strong>Mon Portfolio</strong></div>
     <div>
       <a href="#">Accueil</a>
       <a href="#stepsContainer">Projets</a>
-      <a href="#contact">Contact</a>
     </div>
   </nav>
 </header>
@@ -275,11 +299,12 @@
   const projects = [
     { title: "Projet le plus récent", pdf: "pdfs/projet1.pdf" },
     { title: "Projet précédent", pdf: "pdfs/projet2.pdf" },
-    { title: "Projet plus ancien", pdf: "pdfs/projet3.pdf" }
+    { title: "Projet plus ancien", pdf: "pdfs/projet3.pdf" },
+    { title: "Projet plus plus ancien", pdf: "pdfs/projet4.pdf" },
   ];
 
   const stepsContainer = document.getElementById('stepsContainer');
-  const verticalSpacing = 300;
+  const verticalSpacing = 250;
 
   projects.forEach((project, index) => {
     const step = document.createElement('div');
